@@ -22,7 +22,8 @@ class TaskController extends Controller
 
     public function index()
     {
-        return response()->json(['message' => 'Hello World!']);
+        $data = Task::query()->get();
+        return response()->json(['data' => $data]);
     }
 
     public function store(CreateRequest $createRequest)
@@ -42,7 +43,7 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        return new TaskResource($task);
+        return response()->json(['data' => new TaskResource($task)]);
     }
 
     public function update(UpdateRequest $updateRequest, Task $task)
